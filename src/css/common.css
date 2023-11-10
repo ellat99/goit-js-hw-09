@@ -16,3 +16,55 @@ img {
   display: block;
   max-width: 100%;
 }
+/* Resetare stilizare implicită */
+body,
+h1,
+h2,
+p,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.timer-container {
+  text-align: center;
+}
+
+#datetime-picker {
+  font-size: 16px;
+  padding: 8px;
+}
+
+button {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.field {
+  margin: 0 10px;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+}
+
+.label {
+  font-size: 14px;
+  color: #555;
+}
