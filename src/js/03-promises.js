@@ -45,12 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
       createPromise(position, currentDelay)
         .then(({ position, delay }) => {
           const fulfilledMessage = `✅ Fulfilled promise ${position} in ${delay}ms`;
-          console.log(fulfilledMessage);
           showNotification(fulfilledMessage);
         })
         .catch(({ position, delay }) => {
           const rejectedMessage = `❌ Rejected promise ${position} in ${delay}ms`;
-          console.log(rejectedMessage);
           showNotification(rejectedMessage);
         });
     }
