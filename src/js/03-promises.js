@@ -11,21 +11,16 @@ function createPromise(position, delay) {
   });
 }
 
-function showNotification(message) {
-  if (!('Notification' in window)) {
-    console.error('This browser does not support desktop notification');
-    return;
-  }
+function showSnackbar(message, type = 'info') {
+  const snackbar = document.getElementById('snackbar');
+  snackbar.textContent = message;
+  snackbar.style.backgroundColor = type === 'error' ? '#ff3333' : '#333'; // Red color for errors, default color for info
+  snackbar.style.display = 'block';
 
-  if (Notification.permission === 'granted') {
-    new Notification('Promise Notification', { body: message });
-  } else if (Notification.permission !== 'denied') {
-    Notification.requestPermission().then(permission => {
-      if (permission === 'granted') {
-        new Notification('Promise Notification', { body: message });
-      }
-    });
-  }
+  // Ascunde snackbar-ul după 3 secunde
+  setTimeout(() => {
+    snackbar.style.display = 'none';
+  }, 3000);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,11 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
       createPromise(position, currentDelay)
         .then(({ position, delay }) => {
           const fulfilledMessage = `✅ Fulfilled promise ${position} in ${delay}ms`;
-          showNotification(fulfilledMessage);
+          showSnackbar(fulfilledMessage, 'info');
         })
         .catch(({ position, delay }) => {
           const rejectedMessage = `❌ Rejected promise ${position} in ${delay}ms`;
-          showNotification(rejectedMessage);
+          showSnackbar(rejectedMessage, 'error');
         });
     }
   });
